@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 03:51:58 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 03:59:53 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 05:15:59 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int		ft_is_neg_sign(char *str, int index)
 			return (TRUE);
 		i++;
 	}
-	return (FALSE);
+	return (i == 0 ? TRUE : FALSE);
 }
