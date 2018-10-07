@@ -6,12 +6,11 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:50:46 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 05:31:13 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 05:34:34 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_eval.h"
-#include <stdio.h>
 
 int		eval_expr(char *str)
 {
@@ -76,10 +75,10 @@ void	ft_eval_op(char *str, t_ops operation)
 		i--;
 	while (str[i] && !(str[i] == ' ' || str[i] == '('))
 		i--;
-	x = str[i] ? ft_atoi(&str[i]) : 0;
+	x = !str[i] && *str == '-' ? 0 : ft_atoi(&str[i + 1]);
 	y = ft_atoi(&str[1]);
 	ft_strclear(&str[i + 1]);
-	ft_strnbr(&str[i + 2], operation(x, y));
+	ft_strnbr(&str[i + 1], operation(x, y));
 }
 
 void	ft_eval_replace(char *str)
@@ -89,9 +88,7 @@ void	ft_eval_replace(char *str)
 	next_left = 0;
 	while ((next_left = ft_str_last_left(str)) != NO_MATCH)
 	{
-		printf("%s\n", str);
 		ft_eval_simple(&str[next_left]);
 	}
-	printf("%s\n", str);
 	ft_eval_simple(str);
 }
