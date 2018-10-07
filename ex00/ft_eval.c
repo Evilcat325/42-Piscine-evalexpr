@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:50:46 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 02:57:14 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 03:51:11 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,43 @@ int		eval_expr(char *str)
 	return (result);
 }
 
-int		ft_str_next_left(char *str)
+int		ft_str_last_left(char *str)
 {
 	int i;
+	int len;
 
-	i = 0;
-	while (str[i] && str[i] != '(')
-		i++;
-	return (str[i] ? i : NO_MATCH);
+	len = ft_strlen(str);
+	i = len - 1;
+	while (i >= 0 && str[i] != '(')
+		i--;
+	return (i >= 0 ? i : NO_MATCH);
 }
 
 void	ft_eval_simple(char *str)
 {
 	int	i;
+	int	match;
 
 	i = 0;
-	while (str[i])
+	match = 1;
+	if (str[i] == '(')
+	{
+		str[i] = ' ';
+		while (str[i] != ')')
+			i++;
+		str[i] = ' ';
+	}
+	i = -1;
+	while (str[++i])
 	{
 		if (str[i] == '*' || str[i] == '/' || str[i] == '%')
-			ft_eval_op(str, ft_ctot(str[i]));
+			ft_eval_op(&str[i], ft_ctot(str[i]));
 	}
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
-		if (str[i] == '+' || (str[i] == '-' && !NBR(str[i + 1])))
-			ft_eval_op(str, ft_ctot(str[i]));
+		if (str[i] == '+' || (str[i] == '-' && ft_is_neg_sign(str, i)))
+			ft_eval_op(&str[i], ft_ctot(str[i]));
 	}
 }
 
@@ -73,9 +86,10 @@ void	ft_eval_replace(char *str)
 {
 	int	next_left;
 
-	if ((next_left = ft_str_next_left(str)) == NO_MATCH)
-		ft_eval_simple(str);
-	else
-		ft_eval_replace(&str[next_left]);
+	next_left = 0;
+	while ((next_left = ft_str_last_left(str)) != NO_MATCH)
+	{
+		ft_eval_simple(&str[next_left]);
+	}
 	ft_eval_simple(str);
 }

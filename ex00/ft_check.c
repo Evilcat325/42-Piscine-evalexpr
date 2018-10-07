@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_define.h                                        :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 01:09:52 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 03:58:06 by seli             ###   ########.fr       */
+/*   Created: 2018/10/07 03:51:58 by seli              #+#    #+#             */
+/*   Updated: 2018/10/07 03:59:53 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_DEFINE_H
-# define FT_DEFINE_H
+#include "ft_check.h"
 
-# define TRUE 1
-# define FALSE 0
-# define NO_MATCH -1
-# define UNUSED(X) (void)(X)
-# define OPS(X) (X == '-' || X == '+' || X == '/' || X == '*' || X == '%')
-# define NBR(X) ('0' <= X && X <= '9')
+int		ft_is_neg_sign(char *str, int index)
+{
+	int	i;
 
-typedef int		(*t_ops)(int, int);
-
-#endif
+	i = 0;
+	while (i < index)
+	{
+		if (str[i] != ' ')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}

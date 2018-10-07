@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 01:22:58 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 03:00:29 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 03:57:42 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strpad(char *str)
 		pad[i + 1] = str[i];
 		i++;
 	}
-	pad[i] = '\0';
+	pad[i + 1] = '\0';
 	return (pad);
 }
 
@@ -52,7 +52,11 @@ void	ft_strclear(char *str)
 		str++;
 	*str = ' ';
 	while (*str && !OPS(*str))
-		*(str++) = ' ';
+	{
+		if (!(*str == '(' || *str == ')'))
+			*str = ' ';
+		str++;
+	}
 }
 
 void	ft_strnbr(char *str, int nbr)
@@ -62,16 +66,19 @@ void	ft_strnbr(char *str, int nbr)
 
 	nb = (long)nbr;
 	if (nb < 0)
+	{
 		*(str++) = '-';
+		nb = -nb;
+	}
 	divisor = 1000000000000000000;
 	while (nb / divisor == 0 && divisor != 1)
 		divisor /= 10;
 	while (divisor != 1)
 	{
-		*(str++) = ABS((nb / divisor) % 10) + '0';
+		*(str++) = (nb / divisor) % 10 + '0';
 		divisor /= 10;
 	}
-	*(str++) = ABS(nb % 10) + '0';
+	*(str++) = nb % 10 + '0';
 }
 
 t_ops	ft_ctot(char c)
