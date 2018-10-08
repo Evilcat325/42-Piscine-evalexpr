@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 01:22:58 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 05:07:15 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 20:02:30 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,12 @@ char	*ft_strpad(char *str)
 	return (pad);
 }
 
-void	ft_strclear(char *str)
+void	ft_strclear_number(char *str)
 {
-	*str = ' ';
-	while (!OPS(*str))
+	while (*str == ' ' || *str == '-' || *str == '+')
 		*(str++) = ' ';
-	*str = ' ';
-	while (*str == ' ')
-		str++;
-	*str = ' ';
-	while (*str && !OPS(*str))
-	{
-		if (!(*str == '(' || *str == ')'))
-			*str = ' ';
-		str++;
-	}
+	while (*str && '0' <= *str && *str <= '9')
+		*(str++) = ' ';
 }
 
 void	ft_strnbr(char *str, int nbr)

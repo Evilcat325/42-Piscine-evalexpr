@@ -6,20 +6,20 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 03:51:58 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 05:15:59 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 20:18:54 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_check.h"
 
-int		ft_is_neg_sign(char *str, int index)
+int		ft_is_sub_ops(char *str, int index)
 {
 	int	i;
 
 	i = 0;
 	while (i < index)
 	{
-		if (str[i] != ' ')
+		if ('0' <= str[i] && str[i] <= '9')
 			return (TRUE);
 		i++;
 	}

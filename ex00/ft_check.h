@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 03:53:28 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 03:53:59 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 20:18:08 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define FT_CHECK_H
 # include "ft_define.h"
 
-int		ft_is_neg_sign(char *str, int index);
+int		ft_is_sub_ops(char *str, int index);
 
 #endif

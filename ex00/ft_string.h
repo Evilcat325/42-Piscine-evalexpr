@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 01:17:45 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 03:00:02 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 19:51:57 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		ft_strlen(char *str);
 char	*ft_strpad(char *str);
-void	ft_strclear(char *str);
+void	ft_strclear_number(char *str);
 void	ft_strnbr(char *str, int nbr);
 t_ops	ft_ctot(char c);
 

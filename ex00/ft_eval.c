@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:50:46 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 05:34:34 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 20:19:36 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_eval_simple(char *str)
 	i = -1;
 	while (str[++i] && i <= eval_len)
 	{
-		if (str[i] == '+' || (str[i] == '-' && ft_is_neg_sign(str, i)))
+		if (str[i] == '+' || (str[i] == '-' && ft_is_sub_ops(str, i)))
 			ft_eval_op(&str[i], ft_ctot(str[i]));
 	}
 }
@@ -73,11 +73,14 @@ void	ft_eval_op(char *str, t_ops operation)
 	i = -1;
 	while (str[i] && str[i] == ' ')
 		i--;
-	while (str[i] && !(str[i] == ' ' || str[i] == '('))
+	while (str[i] && str[i] != ' ' && !OPS(*str))
 		i--;
-	x = !str[i] && *str == '-' ? 0 : ft_atoi(&str[i + 1]);
+	x = str[i] ? ft_atoi(&str[i]) : 0;
 	y = ft_atoi(&str[1]);
-	ft_strclear(&str[i + 1]);
+	if (str[i])
+		ft_strclear_number(&str[i]);
+	*str = ' ';
+	ft_strclear_number(&str[1]);
 	ft_strnbr(&str[i + 1], operation(x, y));
 }
 
