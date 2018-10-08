@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:50:46 by seli              #+#    #+#             */
-/*   Updated: 2018/10/07 20:19:36 by seli             ###   ########.fr       */
+/*   Updated: 2018/10/07 20:25:10 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_eval_op(char *str, t_ops operation)
 	i = -1;
 	while (str[i] && str[i] == ' ')
 		i--;
-	while (str[i] && str[i] != ' ' && !OPS(*str))
+	while (str[i - 1] && '0' <= str[i] && str[i] <= '9')
 		i--;
 	x = str[i] ? ft_atoi(&str[i]) : 0;
 	y = ft_atoi(&str[1]);
